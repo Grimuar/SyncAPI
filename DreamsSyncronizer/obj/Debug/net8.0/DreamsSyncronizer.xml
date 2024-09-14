@@ -1,0 +1,238 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>DreamsSyncronizer</name>
+    </assembly>
+    <members>
+        <member name="T:DreamsSyncronizer.Common.HashComparer">
+            <summary>
+            Сравниватель хешей, два входных значения, на выходе получем лигическое утверждение
+            </summary>
+        </member>
+        <member name="T:DreamsSyncronizer.Common.MD5Handler">
+            <summary>
+            Обработчик для хеширования строки, проверить возможность применения
+            к моделям в БД
+            </summary>
+        </member>
+        <member name="M:DreamsSyncronizer.Controllers.AuthController.Register(DreamsSyncronizer.Models.Api.Auth.Request.RegisterRequest)">
+            <summary>
+            Registration user in api
+            </summary>
+            <remarks>
+            Sample request:
+            POST /auth/register
+            {
+            "Login": "string",
+            "Password": "string"
+            "ConfirmPassword" : "string"
+            }
+            </remarks>
+            <param name="request"> LoginModel object</param>
+            <returns>{
+            "access_token": "JwtToken",
+            "login": "UserLogin"
+                      }
+            </returns>
+            <response code="200">Always</response>
+        </member>
+        <member name="M:DreamsSyncronizer.Controllers.AuthController.Login(DreamsSyncronizer.Models.Api.Auth.Request.LoginRequest)">
+            <summary>
+            Authentication user in api
+            </summary>
+            <remarks>
+            Sample request:
+            POST /auth/login
+            {
+            "Login": "string",
+            "Password": "string"
+            }
+            </remarks>
+            <param name="request"> LoginModel object</param>
+            <returns>{
+            "access_token": "JwtToken",
+            "login": "UserLogin"
+                      }
+            </returns>
+            <response code="200">Always</response>
+        </member>
+        <member name="M:DreamsSyncronizer.Controllers.AuthController.ChangePassword(DreamsSyncronizer.Models.Api.Auth.Request.ChangePasswordRequest)">
+            <summary>
+            Edit user in api
+            </summary>
+            <remarks>
+            Sample request:
+            PUT /auth/update
+            {
+            "OldPassword": "string",
+            "NewPassword": "string",
+            "ConfirmNewPassword": "string"
+            }
+            </remarks>
+            <param name="request"> LoginModel object</param>
+            <returns>{
+            "UserDb"
+                      }
+            </returns>
+            <response code="200">Success</response>
+            <response code="401">If the user is unauthorized</response>
+        </member>
+        <member name="M:DreamsSyncronizer.Controllers.AuthController.Delete(DreamsSyncronizer.Models.Api.Auth.Request.DeleteRequest)">
+            <summary>
+            Delete user in api and all his data (Working cascade delete)
+            ConfirmDelete = 1 - Confirmation,0 - No Confirmation 
+            </summary>
+            <remarks>
+            Sample request:
+            PUT /auth/update
+            {
+            "Login": "string",
+            "Password": "string",
+            "ConfirmDelete": "1"
+            }
+            </remarks>
+            <param name="request"> LoginModel object</param>
+            <returns>{
+            "access_token": "JwtToken",
+            "login": "UserLogin"
+                      }
+            </returns>
+            <response code="200">Always</response>
+            <response code="401">If the user is unauthorized</response>
+        </member>
+        <member name="M:DreamsSyncronizer.Controllers.SyncController.CheckData(DreamsSyncronizer.Models.Api.Sync.Request.CheckDataRequest)">
+            <summary>
+            Проверка наличия данных для linkId. Если данные есть, то возвращаем ключи и lastUpdate
+            </summary>
+            <param name="request"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DreamsSyncronizer.Controllers.SyncController.CheckRelevance(DreamsSyncronizer.Models.Api.Sync.Request.CheckRelevanceRequest)">
+            <summary>
+            Проверка актуальности данных. Проверяем, какие наборы идентичны, какие нужно скачать из МП, какие нужно загрузить в МП
+            </summary>
+            <param name="request"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DreamsSyncronizer.Controllers.SyncController.Upload(DreamsSyncronizer.Models.Api.Sync.Request.UploadRequest)">
+            <summary>
+            Получаем данные из МП
+            </summary>
+            <param name="request"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DreamsSyncronizer.Controllers.SyncController.Download(DreamsSyncronizer.Models.Api.Sync.Request.DownloadRequest)">
+            <summary>
+            отправляем данные в МП
+            </summary>
+            <param name="request"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DreamsSyncronizer.Controllers.SyncController.Clear(DreamsSyncronizer.Models.Api.Sync.Request.ClearRequest)">
+            <summary>
+            очистка данных при принудительной загрузке на сервер
+            </summary>
+            <param name="request"></param>
+            <returns></returns>
+        </member>
+        <member name="T:DreamsSyncronizer.Migrations.InitialMigration">
+            <inheritdoc />
+        </member>
+        <member name="M:DreamsSyncronizer.Migrations.InitialMigration.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:DreamsSyncronizer.Migrations.InitialMigration.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:DreamsSyncronizer.Migrations.InitialMigration.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="P:DreamsSyncronizer.Models.Api.Push.Request.PushNotifyRequest.DeviceType">
+            <summary>
+            тип устройства 
+            </summary>
+        </member>
+        <member name="P:DreamsSyncronizer.Models.Api.Push.Request.PushNotifyRequest.DeviceToken">
+            <summary>
+            токен устройства для отправки Push-уведомлений
+            </summary>
+        </member>
+        <member name="P:DreamsSyncronizer.Models.Api.Push.Request.PushNotifyRequest.DeviceId">
+            <summary>
+            уникальный id устройства
+            </summary>
+        </member>
+        <member name="P:DreamsSyncronizer.Models.Api.Sync.Request.CheckRelevanceRequest.LinkId">
+            <summary>
+            ключ для связи пользователей
+            </summary>
+        </member>
+        <member name="P:DreamsSyncronizer.Models.Api.Sync.Request.CheckRequestItem.Key">
+            <summary>
+            раздел данных
+            </summary>
+        </member>
+        <member name="P:DreamsSyncronizer.Models.Api.Sync.Request.CheckRequestItem.Hash">
+            <summary>
+            md5
+            </summary>
+        </member>
+        <member name="P:DreamsSyncronizer.Models.Api.Sync.Request.CheckRequestItem.Timestamp">
+            <summary>
+            дата создания данных на МП (UTC)
+            </summary>
+        </member>
+        <member name="P:DreamsSyncronizer.Models.Api.Sync.Request.UploadRequest.LinkId">
+            <summary>
+            ключ для связи пользователей
+            </summary>
+        </member>
+        <member name="P:DreamsSyncronizer.Models.Api.Sync.Request.UploadRequestItem.Key">
+            <summary>
+            раздел данных
+            </summary>
+        </member>
+        <member name="P:DreamsSyncronizer.Models.Api.Sync.Request.UploadRequestItem.JsonData">
+            <summary>
+            сами данные
+            </summary>
+        </member>
+        <member name="P:DreamsSyncronizer.Models.Api.Sync.Request.UploadRequestItem.Hash">
+            <summary>
+            md5
+            </summary>
+        </member>
+        <!-- Badly formed XML comment ignored for member "P:DreamsSyncronizer.Models.Api.System.Request.PushNotifyTestRequest.DeviceToken" -->
+        <member name="P:DreamsSyncronizer.Models.Api.System.Request.PushNotifyTestRequest.BearerProviderToken">
+            <summary>
+            Токен для APNS, игнорируется если используется сертификат
+            </summary>
+        </member>
+        <member name="P:DreamsSyncronizer.Models.Api.System.Request.PushNotifyTestRequest.Message">
+            <summary>
+            Сообщение в пуш
+            </summary>
+        </member>
+        <member name="F:DreamsSyncronizer.Models.Const.LocaleConst.RusLocale">
+            <summary>
+            Русский язык
+            </summary>
+        </member>
+        <member name="F:DreamsSyncronizer.Models.Const.LocaleConst.UkrLocale">
+            <summary>
+            Украинский язык
+            </summary>
+        </member>
+        <member name="P:DreamsSyncronizer.Models.Db.UserDeviceDb.DeviceType">
+            <summary>
+            DeviceTypeEnum
+            </summary>
+        </member>
+        <member name="P:DreamsSyncronizer.Models.Db.UserDeviceDb.DeviceId">
+            <summary>
+            уникальный id устройства(использовать для поиска записи в этой
+            таблице для удаления записи)
+            </summary>
+        </member>
+    </members>
+</doc>
